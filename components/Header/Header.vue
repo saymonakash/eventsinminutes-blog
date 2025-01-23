@@ -5,7 +5,8 @@
         <Logo />
         <NuxtLink
           to="tel:+1 (628) 587-3235"
-          class="md:flex hidden items-center gap-3 text-sm">
+          class="md:flex hidden items-center gap-3 text-sm"
+        >
           <NuxtImg src="icons/icon-call.svg" class="size-5" />
           <span>+1 (628) 587-3235</span>
         </NuxtLink>
@@ -17,13 +18,15 @@
         <div class="relative">
           <div
             @click="toggleDropdown"
-            class="flex items-center gap-3 py-2 px-4 rounded-full text-dark cursor-pointer bg-primary/5">
+            class="flex items-center gap-3 py-2 px-4 rounded-full text-dark cursor-pointer bg-primary/5"
+          >
             <NuxtImg src="icons/icon-menu.svg" class="size-6" />
             <div class="size-8 rounded-full overflow-hidden">
               <NuxtImg
                 :src="session ? 'user.png' : '/icons/icon-user.svg'"
                 class="size-full object-cover"
-                loading="lazy" />
+                loading="lazy"
+              />
             </div>
           </div>
           <Transition
@@ -32,10 +35,12 @@
             enter-to-class="opacity-100 transform scale-100"
             leave-from-class="opacity-100 transform scale-100"
             leave-active-class="transition ease-in duration-100"
-            leave-to-class="opacity-0 transform scale-90">
+            leave-to-class="opacity-0 transform scale-90"
+          >
             <DropDown
               :isDropdownOpen="isDropdownOpen"
-              @closeDropdown="isDropdownOpen = false" />
+              @closeDropdown="isDropdownOpen = false"
+            />
           </Transition>
         </div>
       </nav>
@@ -43,11 +48,11 @@
   </header>
 </template>
 <script setup>
-import DropDown from "~/components/Header/DropDown.vue";
-import Logo from "~/components/Logo.vue";
-const isDropdownOpen = ref(false);
+import DropDown from '~/components/Header/DropDown.vue'
+import Logo from '~/components/Logo.vue'
+const isDropdownOpen = ref(false)
 function toggleDropdown() {
-  isDropdownOpen.value = !isDropdownOpen.value;
+  isDropdownOpen.value = !isDropdownOpen.value
 }
-const session = useSupabaseSession();
+const session = useSupabaseSession()
 </script>

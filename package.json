@@ -8,11 +8,12 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint --ext .js,.vue .",
-    "lint:fix": "eslint --ext .js,.vue . --fix",
+    "lint": "eslint . --config eslint.config.mjs",
+    "lint:fix": "eslint . --fix --config eslint.config.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@nuxt/eslint": "^0.7.5",
     "@nuxt/image": "^1.9.0",
     "@nuxtjs/seo": "^2.1.0",
     "@nuxtjs/sitemap": "^7.2.3",
@@ -21,6 +22,7 @@
     "@supabase/supabase-js": "^2.48.0",
     "@tailwindcss/typography": "^0.5.16",
     "@vite-pwa/nuxt": "^0.10.6",
+    "eslint-define-config": "^2.1.0",
     "nuxt": "^3.15.2",
     "vue": "latest",
     "vue-router": "latest"

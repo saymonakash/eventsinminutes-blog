@@ -5,7 +5,8 @@
       <div
         v-for="(comment, i) in comments"
         :key="i"
-        class="mb-4 p-4 border rounded-lg relative">
+        class="mb-4 p-4 border rounded-lg relative"
+      >
         <div class="flex items-center gap-4">
           <div class="size-10 rounded-full overflow-hidden">
             <NuxtImg class="size-full" src="icons/icon-user.svg" />
@@ -32,7 +33,8 @@
             (user && user.email === 'example@gmail.com')
           "
           @click="deleteComment(comment.id)"
-          class="absolute top-4 right-4 text-red-500 hover:text-red-700">
+          class="absolute top-4 right-4 text-red-500 hover:text-red-700"
+        >
           Delete
         </button>
       </div>
@@ -45,10 +47,12 @@
         v-model="newComment"
         class="w-full p-4 border rounded-lg"
         rows="6"
-        placeholder="Write your comment here..."></textarea>
+        placeholder="Write your comment here..."
+      ></textarea>
       <button
         @click="submitComment"
-        class="mt-4 px-6 py-2 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white duration-300">
+        class="mt-4 px-6 py-2 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white duration-300"
+      >
         Submit Comment
       </button>
     </div>
@@ -59,59 +63,56 @@
 </template>
 
 <script setup lang="ts">
-import { formatedDate } from "~/scripts/formatedDate";
-const user = useSupabaseUser();
-const supabase = useSupabaseClient();
-const postId = useRoute().params.id;
-const comments = ref<Comment[]>([]);
-const newComment = ref();
+import { formatedDate } from '~/scripts/formatedDate'
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
+const postId = useRoute().params.id
+const comments = ref<Comment[]>([])
+const newComment = ref()
 
 const fetchComments = async () => {
   const { data, error } = await supabase
-    .from("comments")
-    .select("*")
-    .eq("post_id", postId)
-    .order("created_at", { ascending: false });
-  if (error) console.error("Error fetching comments:", error);
-  else comments.value = data;
-};
+    .from('comments')
+    .select('*')
+    .eq('post_id', postId)
+    .order('created_at', { ascending: false })
+  if (error) console.error('Error fetching comments:', error)
+  else comments.value = data
+}
 
 interface Comment {
-  id: string;
-  post_id: string;
-  text: string;
-  created_at: string;
-  commented_by: string;
+  id: string
+  post_id: string
+  text: string
+  created_at: string
+  commented_by: string
 }
 
 const submitComment = async () => {
-  if (!newComment.value.trim()) return;
-  const { data, error } = await supabase.from("comments").insert({
+  if (!newComment.value.trim()) return
+  const { data, error } = await supabase.from('comments').insert({
     post_id: postId,
     text: newComment.value,
     created_at: new Date().toISOString(),
     commented_by: user.value?.id,
-  });
-  if (error) console.error("Error submitting comment:", error);
+  })
+  if (error) console.error('Error submitting comment:', error)
   else if (data) {
-    comments.value.unshift(data);
-    newComment.value = "";
+    comments.value.unshift(data)
+    newComment.value = ''
   }
-};
+}
 
 const deleteComment = async (commentId: string) => {
-  const { error } = await supabase
-    .from("comments")
-    .delete()
-    .eq("id", commentId);
-  if (error) console.error("Error deleting comment:", error);
+  const { error } = await supabase.from('comments').delete().eq('id', commentId)
+  if (error) console.error('Error deleting comment:', error)
   else
     comments.value = comments.value.filter(
-      (comment) => comment.id !== commentId
-    );
-};
+      (comment) => comment.id !== commentId,
+    )
+}
 
-onMounted(fetchComments);
+onMounted(fetchComments)
 
-watch(comments, fetchComments);
+watch(comments, fetchComments)
 </script>

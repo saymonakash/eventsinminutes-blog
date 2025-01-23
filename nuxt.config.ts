@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   // General Configuration
-  compatibilityDate: "2024-11-01",
+  compatibilityDate: '2024-11-01',
 
   runtimeConfig: {
     public: {
@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       supabaseKey: process.env.SUPABASE_KEY,
     },
   },
-  
+
   ssr: true,
 
   // Devtools Configuration
@@ -16,12 +16,13 @@ export default defineNuxtConfig({
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
   // Modules Configuration
   modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxt/image",
-    "@nuxtjs/supabase",
-    "@nuxtjs/seo",
-    "@vite-pwa/nuxt",
-    "@nuxtjs/sitemap",
+    '@nuxtjs/tailwindcss',
+    '@nuxt/image',
+    '@nuxtjs/supabase',
+    '@nuxtjs/seo',
+    '@vite-pwa/nuxt',
+    '@nuxtjs/sitemap',
+    '@nuxt/eslint',
   ],
 
   // TailwindCSS Configuration
@@ -31,12 +32,12 @@ export default defineNuxtConfig({
 
   // Image Configuration
   image: {
-    dir: "assets/images/",
-    provider: "ipx",
+    dir: 'assets/images/',
+    provider: '',
     presets: {
       default: {
         modifiers: {
-          format: "webp",
+          format: 'webp',
           quality: 80,
         },
       },
@@ -50,59 +51,83 @@ export default defineNuxtConfig({
       meta: [{ charset: 'utf-8' }],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon-32x32.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon-16x16.png',
+        },
         { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/android-chrome-192x192.png' },
-        { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/android-chrome-512x512.png' },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '192x192',
+          href: '/android-chrome-192x192.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '512x512',
+          href: '/android-chrome-512x512.png',
+        },
       ],
     },
   },
 
   // Site Configuration
   site: {
-    name: "Events In Minutes",
-    title: "Events In Minutes - Your Event Planning Companion",
-    description: "Plan your events effortlessly with Events In Minutes.",
-    keywords: ["events", "planning", "event management"],
+    name: 'Events In Minutes',
+    title: 'Events In Minutes - Your Event Planning Companion',
+    description: 'Plan your events effortlessly with Events In Minutes.',
+    keywords: ['events', 'planning', 'event management'],
     openGraph: {
-      type: "website",
-      image: "/logo/Brand-logo.png",
-      site_name: "Events In Minutes",
+      type: 'website',
+      image: '/logo/Brand-logo.png',
+      site_name: 'Events In Minutes',
     },
   },
 
   // SEO Configuration
   seo: {
-    baseURL: "https://www.eventsinminutes.com",
-    name: "Events In Minutes",
-    title: "Events In Minutes - Your Event Planning Companion",
-    templateTitle: "%name% || %title%",
-    description: "Plan your events effortlessly with Events In Minutes.",
-    canonical: "auto",
+    baseURL: 'https://www.eventsinminutes.com',
+    name: 'Events In Minutes',
+    title: 'Events In Minutes - Your Event Planning Companion',
+    templateTitle: '%name% || %title%',
+    description: 'Plan your events effortlessly with Events In Minutes.',
+    canonical: 'auto',
     isForcedTrailingSlash: false,
-    keywords: ["events", "planning", "event management"],
+    keywords: ['events', 'planning', 'event management'],
     openGraph: {
-      type: "website",
-      image: "https://www.eventsinminutes.com/og-image.jpg",
-      site_name: "Events In Minutes",
+      type: 'website',
+      image: 'https://www.eventsinminutes.com/og-image.jpg',
+      site_name: 'Events In Minutes',
     },
     twitter: {
-      card: "summary_large_image",
-      site: "@eventsinminutes",
-      creator: "@eventsinminutes",
+      card: 'summary_large_image',
+      site: '@eventsinminutes',
+      creator: '@eventsinminutes',
     },
   },
 
   // Components Configuration
   components: {
     global: true,
-    dirs: ["@/components"],
+    dirs: ['@/components'],
   },
 
   // CSS Configuration
-  css: ["@/assets/css/tailwind.css"],
+  css: ['@/assets/css/tailwind.css'],
 
   // PostCSS Configuration
   postcss: {
@@ -115,35 +140,35 @@ export default defineNuxtConfig({
   // Nitro Configuration
   nitro: {
     routeRules: {
-      "/_nuxt/**": {
-        headers: { "Cache-Control": "public, max-age=31536000, immutable" },
+      '/_nuxt/**': {
+        headers: { 'Cache-Control': 'public, max-age=31536000, immutable' },
       },
     },
     prerender: {
-      routes: ["/post", "/post/category"],  // Define static routes for SSG
+      routes: ['/post', '/post/category'], // Define static routes for SSG
       crawlLinks: true,
-      failOnError:false, // Set to true to fail the build if any page fails to prerender
+      failOnError: false, // Set to true to fail the build if any page fails to prerender
     },
   },
 
   // Vite Configuration
   vite: {
     ssr: {
-      noExternal: ['@nuxtjs/supabase']
+      noExternal: ['@nuxtjs/supabase'],
     },
-    cacheDir: ".vite-cache",
+    cacheDir: '.vite-cache',
   },
 
   // PWA Configuration
   pwa: {
-    registerType: "autoUpdate",
+    registerType: 'autoUpdate',
     workbox: {
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/api\.example\.com\/.*$/,
-          handler: "CacheFirst",
+          handler: 'CacheFirst',
           options: {
-            cacheName: "api-cache",
+            cacheName: 'api-cache',
             expiration: { maxEntries: 50, maxAgeSeconds: 3600 },
           },
         },
@@ -168,13 +193,11 @@ export default defineNuxtConfig({
       process.env.CF_PAGES_URL,
     ],
     // vercel, netlify
-  name: [process.env.NUXT_ENV_VERCEL_GIT_REPO_SLUG, process.env.SITE_NAME],
+    name: [process.env.NUXT_ENV_VERCEL_GIT_REPO_SLUG, process.env.SITE_NAME],
     gzip: true,
     cacheTime: 1,
     routes: () => {
-      return [
-        { url: new Date().toISOString() }
-      ]
-    }
+      return [{ url: new Date().toISOString() }]
+    },
   },
-});
+})

@@ -5,7 +5,9 @@ export default ({ $config }, inject) => {
   const supabaseKey = $config.public.supabaseKey
 
   if (!supabaseUrl || !supabaseKey) {
-    throw new Error('@supabase/ssr: Your project\'s URL and API key are required to create a Supabase client!')
+    throw new Error(
+      "@supabase/ssr: Your project's URL and API key are required to create a Supabase client!",
+    )
   }
 
   const supabase = createClient(supabaseUrl, supabaseKey)

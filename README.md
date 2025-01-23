@@ -104,6 +104,7 @@ eventsinminutes-blog/
 ```
 
 ## Login Information
+
 - Login URL: [http://localhost:3000/login](http://localhost:3000/login)
 - Email: example@gmail.com
 - Password: password
@@ -117,17 +118,15 @@ SUPABASE_URL=https://hqewnfyxrehjgkrmsbep.supabase.co
 SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxZXduZnl4cmVoamdrcm1zYmVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc0OTkwNTAsImV4cCI6MjA1MzA3NTA1MH0.HzMGGbabEqCFL1BGS1wQ1XKU4cjsjjVyyUWmn_Fbo5A
 ```
 
-
-
 ## Middleware Protection
+
 - For the Admin page when the user is not logged in (visitors can't access the admin page without logging in).
 - For the Login page when the user is logged in (users can't access the login page after successfully logging in).
 
 ## Quick URLs
+
 - [http://localhost:3000/login](http://localhost:3000/login)
 - [http://localhost:3000/admin](http://localhost:3000/admin)
 - [http://localhost:3000/post](http://localhost:3000/post)
 - [http://localhost:3000/post/44f7686c-3874-4984-b942-3ca8c288c3bf](http://localhost:3000/post/44f7686c-3874-4984-b942-3ca8c288c3bf)
 - [http://localhost:3000/post/category/corporate-events](http://localhost:3000/post/category/corporate-events)
-
-

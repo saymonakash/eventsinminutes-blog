@@ -10,15 +10,15 @@ module.exports = {
     '@nuxtjs/eslint-config-typescript',
     'prettier',
   ],
-  plugins: [
-    'vue',
-    'prettier',
-  ],
+  plugins: ['vue', 'prettier'],
   // add your custom rules here
   rules: {
-    'prettier/prettier': ['error', {
-      singleQuote: true,
-      semi: false,
-    }],
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        semi: false,
+      },
+    ],
   },
 }

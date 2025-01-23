@@ -6,7 +6,8 @@
     <FeaturedCard
       v-for="(post, i) in posts.splice(0, 1)"
       :key="i"
-      :post="post" />
+      :post="post"
+    />
     <div class="h-[84px] w-full" />
     <hr />
     <div class="h-[84px] w-full" />
@@ -16,17 +17,17 @@
 </template>
 
 <script setup lang="ts">
-import FeaturedCard from "~/components/PostPage/FeaturedCard.vue";
-import PostsHeader from "~/components/PostPage/PostsHeader.vue";
-import SectionArticles from "~/components/PostPage/SectionArticles.vue";
-import type { Post } from "~/types/types";
-const posts = ref<Post[]>([]);
+import FeaturedCard from '~/components/PostPage/FeaturedCard.vue'
+import PostsHeader from '~/components/PostPage/PostsHeader.vue'
+import SectionArticles from '~/components/PostPage/SectionArticles.vue'
+import type { Post } from '~/types/types'
+const posts = ref<Post[]>([])
 
-const supabase = useSupabaseClient();
+const supabase = useSupabaseClient()
 
 onMounted(async () => {
-  const { data, error } = await supabase.from("posts").select("*");
-  if (error) console.error("Error fetching posts:", error);
-  else posts.value = data as Post[];
-});
+  const { data, error } = await supabase.from('posts').select('*')
+  if (error) console.error('Error fetching posts:', error)
+  else posts.value = data as Post[]
+})
 </script>

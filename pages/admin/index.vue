@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import CreatePost from "~/pages/admin/CreatePost.vue";
+import CreatePost from '~/pages/admin/CreatePost.vue'
 
 definePageMeta({
-  middleware: function(to, from) {
-    const user = useSupabaseUser();
+  middleware: function (to, from) {
+    const user = useSupabaseUser()
 
     if (!user.value) {
-      return navigateTo('/login');
+      return navigateTo('/login')
     }
   },
-});
+})
 </script>
 
 <template>
