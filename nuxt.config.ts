@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 
   // Devtools Configuration
   devtools: { enabled: false },
-
+  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
   // Modules Configuration
   modules: [
     "@nuxtjs/tailwindcss",
@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "@nuxtjs/seo",
     "@vite-pwa/nuxt",
+    "@nuxtjs/sitemap",
   ],
 
   // TailwindCSS Configuration
@@ -111,12 +112,15 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      routes: ["/post"], // Define static routes for SSG
+      routes: ["/post", "/post/category"], // Define static routes for SSG
     },
   },
 
   // Vite Configuration
   vite: {
+    ssr: {
+      noExternal: ['@nuxtjs/supabase']
+    },
     cacheDir: ".vite-cache",
   },
 
@@ -140,5 +144,25 @@ export default defineNuxtConfig({
   // Supabase Configuration
   supabase: {
     redirect: false,
+  },
+
+  sitemap: {
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+    url: [
+      // vercel, netlify
+      process.env.NUXT_ENV_VERCEL_URL,
+      process.env.URL,
+      // cloudflare pages
+      process.env.CF_PAGES_URL,
+    ],
+    // vercel, netlify
+  name: [process.env.NUXT_ENV_VERCEL_GIT_REPO_SLUG, process.env.SITE_NAME],
+    gzip: true,
+    cacheTime: 1,
+    routes: () => {
+      return [
+        { url: new Date().toISOString() }
+      ]
+    }
   },
 });

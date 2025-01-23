@@ -5,4 +5,5 @@ export interface Post {
   created_at: Date;
   title: string;
   id: string;
+  likes: number;
 }

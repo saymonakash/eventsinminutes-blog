@@ -108,6 +108,17 @@ eventsinminutes-blog/
 - Email: example@gmail.com
 - Password: password
 
+## Supabase Information
+
+To connect to Supabase, use the following environment variables:
+
+```env
+SUPABASE_URL=https://hqewnfyxrehjgkrmsbep.supabase.co
+SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxZXduZnl4cmVoamdrcm1zYmVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc0OTkwNTAsImV4cCI6MjA1MzA3NTA1MH0.HzMGGbabEqCFL1BGS1wQ1XKU4cjsjjVyyUWmn_Fbo5A
+```
+
+
+
 ## Middleware Protection
 - For the Admin page when the user is not logged in (visitors can't access the admin page without logging in).
 - For the Login page when the user is logged in (users can't access the login page after successfully logging in).
