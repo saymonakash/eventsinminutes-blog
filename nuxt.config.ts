@@ -164,6 +164,7 @@ export default defineNuxtConfig({
           },
         },
       ],
+      navigateFallback: undefined 
     },
   },
 
