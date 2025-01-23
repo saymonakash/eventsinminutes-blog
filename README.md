@@ -102,3 +102,9 @@ eventsinminutes-blog/
 ├── package.json          # Project metadata and dependencies
 └── README.md             # Project documentation
 ```
+
+
+## Login Info
+Login: http://localhost:3000/login
+email : example@gmail.com
+pass: password

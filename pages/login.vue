@@ -67,7 +67,7 @@
             </label>
           </div>
           <NuxtLink
-            to="/Forgot-Password"
+            to="#"
             class="text-sm text-primary hover:underline">
             Forgot Password
           </NuxtLink>

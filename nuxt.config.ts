@@ -9,23 +9,9 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@vite-pwa/nuxt",
   ],
-  auth: {
-    // Doc: https://auth.nuxtjs.org/getting-started/options
-    redirect: {
-      login: "/login",
-      logout: "/",
-      callback: "/login",
-      home: "/",
-    },
-    strategies: {
-      local: false,
-      auth0: {
-        domain: "TENANT.auth0.com",
-        client_id: "CLIENT_ID",
-      },
-    },
+  supabase:{
+    redirect: false
   },
-  proxy: {},
   tailwindcss: {
     exposeConfig: true,
   },
@@ -42,9 +28,24 @@ export default defineNuxtConfig({
     },
   },
   app: {
+    baseURL: '/',
     head: {
-      charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1",
+      meta: [{ charset: 'utf-8' }],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/logo/Brand-logo.png' },
+        { rel: 'icon', href: '/logo/Brand-logo.png' },
+      ],
+    },
+  },
+  site:{
+    name: "Events In Minutes",
+    title: "Events In Minutes - Your Event Planning Companion",
+    description: "Plan your events effortlessly with Events In Minutes.",
+    keywords: ["events", "planning", "event management"],
+    openGraph: {
+      type: "website",
+      image: "/logo/Brand-logo.png",
+      site_name: "Events In Minutes",
     },
   },
   seo: {

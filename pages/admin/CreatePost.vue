@@ -19,7 +19,7 @@
     <div
       v-if="showModal"
       class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-      <div class="bg-white p-8 rounded shadow-lg w-96">
+      <div class="bg-white p-8 rounded shadow-lg w-1/2">
         <h2 class="text-2xl mb-4">New Post</h2>
         <input
           v-model="newPost.image"
@@ -32,6 +32,7 @@
         <textarea
           v-model="newPost.content"
           placeholder="Content"
+          rows="8"
           class="border p-2 mb-2 w-full"></textarea>
         <input
           v-model="newPost.category"
@@ -56,7 +57,7 @@
     <div
       v-if="showEditModal"
       class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-      <div class="bg-white p-8 rounded shadow-lg w-96">
+      <div class="bg-white p-8 rounded shadow-lg w-1/2">
         <h2 class="text-2xl mb-4">Edit Post</h2>
         <input
           v-model="editPost.image"
@@ -69,6 +70,7 @@
         <textarea
           v-model="editPost.content"
           placeholder="Content"
+          rows="8"
           class="border p-2 mb-2 w-full"></textarea>
         <input
           v-model="editPost.category"
