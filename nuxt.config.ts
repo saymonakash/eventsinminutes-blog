@@ -33,6 +33,11 @@ export default defineNuxtConfig({
   // Image Configuration
   image: {
     dir: 'public/',
+    prerender: {
+      saveOnPrerender: true,
+      prerenderProviders: true,
+      prerenderExternals: true,
+    },
     provider: 'ipx',
     presets: {
       default: {
@@ -143,10 +148,9 @@ export default defineNuxtConfig({
       '/_nuxt/**': {
         headers: { 'Cache-Control': 'public, max-age=31536000, immutable' },
       },
-      '/public/**': { prerender: true },
     },
     prerender: {
-      routes: ['/post', '/post/category'], // Define static routes for SSG
+      routes: ['/post', '/post/category','/public'], // Define static routes for SSG
       crawlLinks: true,
       failOnError: false, // Set to true to fail the build if any page fails to prerender
     },
