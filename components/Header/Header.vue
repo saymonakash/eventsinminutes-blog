@@ -20,12 +20,13 @@
             @click="toggleDropdown"
             class="flex items-center gap-3 py-2 px-4 rounded-full text-dark cursor-pointer bg-primary/5"
           >
-            <NuxtImg src="images/icons/icon-menu.svg" class="size-6" />
+            <NuxtImg src="images/icons/icon-menu.svg" alt="icon-menu.svg" class="size-6" />
             <div class="size-8 rounded-full overflow-hidden">
               <NuxtImg
                 :src="
                   user ? 'images/user.png' : 'images/icons/icon-user.svg'
                 "
+                alt="user.svg"
                 class="size-full object-cover"
                 loading="lazy"
               />
