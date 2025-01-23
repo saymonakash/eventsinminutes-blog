@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 md:gap-[22px] bg-white rounded-3xl shadow-300">
+    class="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 md:gap-[22px] bg-white rounded-3xl overflow-hidden shadow-300">
     <div class="aspect-[611/413]">
       <NuxtImg
         :src="post.image"
