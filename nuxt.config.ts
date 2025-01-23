@@ -114,6 +114,7 @@ export default defineNuxtConfig({
     prerender: {
       routes: ["/post", "/post/category"],  // Define static routes for SSG
       crawlLinks: true,
+      failOnError:false, // Set to true to fail the build if any page fails to prerender
     },
   },
 
