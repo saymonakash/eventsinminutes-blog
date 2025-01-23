@@ -150,7 +150,6 @@ export default defineNuxtConfig({
     workbox: {
       enabled: true,
       preCaching: [
-        '/', // Specify the URLs to precache
         '/post',
         '/post/category',
       ],
