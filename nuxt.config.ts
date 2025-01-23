@@ -33,6 +33,7 @@ export default defineNuxtConfig({
   // Image Configuration
   image: {
     dir: 'assets/images/',
+    provider: 'ipx',
     presets: {
       default: {
         modifiers: {
