@@ -34,7 +34,7 @@
           class="text-dark font-medium flex items-center gap-1"
         >
           <span>Read</span>
-          <NuxtImg src="/icons/icon-arrow-right.svg" class="size-4" />
+          <NuxtImg src="images/icons/icon-arrow-right.svg" class="size-4" />
         </NuxtLink>
       </div>
     </div>
