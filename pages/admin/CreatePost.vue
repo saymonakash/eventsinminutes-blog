@@ -1,6 +1,3 @@
-<!-- This is a dummy component that allows you to create a new post. It contains a form with input fields for the image URL(local Image Url), title, content, and category of the post. When the user clicks the "Create" button, the form data is sent to the Supabase database, and the new post is added to the list of posts displayed on the page. -->
-<!-- Just creadt for helping adding new dummy posts -->
-
 <template>
   <div class="main-container mx-auto py-10">
     <!-- Page Title -->
@@ -134,12 +131,7 @@
             Preview
           </NuxtLink>
           <button
-            @click="
-              () => {
-                editPost = { ...post }
-                showEditModal = true
-              }
-            "
+            @click="editPostHandler(post)"
             class="bg-yellow-500 text-white px-4 py-2 rounded mt-2 ml-2 hover:bg-yellow-600 transition"
           >
             Edit
@@ -171,61 +163,65 @@ const postFields = {
   category: '',
   created_at: new Date().toISOString(),
 }
-const newPost = ref(postFields)
-const editPost = ref(postFields)
+const newPost = ref({ ...postFields })
+const editPost = ref({ ...postFields })
 
 // Fetch posts from the database
 const fetchPosts = async () => {
-  let { data, error } = await supabase.from('posts').select('*')
-  if (error) console.error(error)
-  else {
+  const { data, error } = await supabase.from('posts').select('*')
+  if (error) {
+    console.error(error)
+  } else {
     posts.value = data
   }
 }
 
 // Create a new post and reset the form
 const createPost = async () => {
-  newPost.value.created_at = new Date().toISOString() // Ensure created_at is updated
-  let { data, error } = await supabase.from('posts').insert([newPost.value])
-  if (error) console.error(error)
-  else {
-    if (data) {
-      posts.value.unshift(data[0])
-    }
-    newPost.value = {
-      image: '',
-      title: '',
-      content: '',
-      category: '',
-      created_at: new Date().toISOString(),
-    }
+  newPost.value.created_at = new Date().toISOString()
+  const { data, error } = await supabase.from('posts').insert([newPost.value])
+  if (error) {
+    console.error(error)
+  } else {
+    resetNewPost()
     showModal.value = false
+    await fetchPosts() // Fetch the latest posts
   }
 }
 
 // Update an existing post
 const updatePost = async () => {
-  let { error } = await supabase
+  const { error } = await supabase
     .from('posts')
     .update(editPost.value)
     .eq('id', editPost.value.id)
-  if (error) console.error(error)
-  else {
-    const index = posts.value.findIndex((post) => post.id === editPost.value.id)
-    if (index !== -1) {
-      posts.value[index] = { ...editPost.value }
-    }
+  if (error) {
+    console.error(error)
+  } else {
     showEditModal.value = false
+    await fetchPosts() // Fetch the latest posts
   }
 }
 
 // Delete a post by ID
 const deletePost = async (id) => {
-  let { error } = await supabase.from('posts').delete().eq('id', id)
-  if (error) console.error(error)
-  else {
+  const { error } = await supabase.from('posts').delete().eq('id', id)
+  if (error) {
+    console.error(error)
+  } else {
     posts.value = posts.value.filter((post) => post.id !== id)
   }
+}
+
+// Handle edit post button click
+const editPostHandler = (post) => {
+  editPost.value = { ...post }
+  showEditModal.value = true
+}
+
+// Reset new post form
+const resetNewPost = () => {
+  newPost.value = { ...postFields }
 }
 
 // Fetch posts when the component is mounted

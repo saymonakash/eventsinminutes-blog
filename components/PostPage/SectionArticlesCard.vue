@@ -29,7 +29,3 @@ import { formatedSlug } from '~/scripts/formatedSlug'
 import type { Post } from '~/types/types'
 defineProps<{ post: Post }>()
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>

@@ -15,9 +15,7 @@
             <p class="font-medium">Anonymous</p>
             <p class="text-sm text-gray-500">
               <span>{{ formatedDate(comment.created_at) }}</span> at
-              <span>{{
-                new Date(comment.created_at).toLocaleTimeString()
-              }}</span>
+              <span>{{ new Date(comment.created_at).toLocaleTimeString() }}</span>
             </p>
             <p v-if="comment.commented_by" class="text-sm text-gray-500">
               By: {{ comment.commented_by }}
@@ -26,12 +24,9 @@
         </div>
         <p class="mt-8 text-sm text-grey">{{ comment.text }}</p>
 
-        <!-- Delete button Only visible to the user who commented or Admin mail  example@gmail.com -->
+        <!-- Delete button Only visible to the user who commented or Admin mail example@gmail.com -->
         <button
-          v-if="
-            (user && user.id === comment.commented_by) ||
-            (user && user.email === 'example@gmail.com')
-          "
+          v-if="canDeleteComment(comment)"
           @click="deleteComment(comment.id)"
           class="absolute top-4 right-4 text-red-500 hover:text-red-700"
         >
@@ -64,22 +59,8 @@
 
 <script setup lang="ts">
 import { formatedDate } from '~/scripts/formatedDate'
-const user = useSupabaseUser()
-const supabase = useSupabaseClient()
-const postId = useRoute().params.id
-const comments = ref<Comment[]>([])
-const newComment = ref()
 
-const fetchComments = async () => {
-  const { data, error } = await supabase
-    .from('comments')
-    .select('*')
-    .eq('post_id', postId)
-    .order('created_at', { ascending: false })
-  if (error) console.error('Error fetching comments:', error)
-  else comments.value = data
-}
-
+// Define the Comment interface
 interface Comment {
   id: string
   post_id: string
@@ -88,6 +69,27 @@ interface Comment {
   commented_by: string
 }
 
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
+const postId = useRoute().params.id
+const comments = ref<Comment[]>([])
+const newComment = ref('')
+
+// Fetch comments from the database
+const fetchComments = async () => {
+  const { data, error } = await supabase
+    .from('comments')
+    .select('*')
+    .eq('post_id', postId)
+    .order('created_at', { ascending: false })
+  if (error) {
+    console.error('Error fetching comments:', error)
+  } else {
+    comments.value = data
+  }
+}
+
+// Submit a new comment to the database
 const submitComment = async () => {
   if (!newComment.value.trim()) return
   const { data, error } = await supabase.from('comments').insert({
@@ -96,23 +98,35 @@ const submitComment = async () => {
     created_at: new Date().toISOString(),
     commented_by: user.value?.id,
   })
-  if (error) console.error('Error submitting comment:', error)
-  else if (data) {
-    comments.value.unshift(data)
+  if (error) {
+    console.error('Error submitting comment:', error)
+  } else if (data) {
+    comments.value.unshift(data[0])
     newComment.value = ''
   }
 }
 
+// Delete a comment from the database
 const deleteComment = async (commentId: string) => {
   const { error } = await supabase.from('comments').delete().eq('id', commentId)
-  if (error) console.error('Error deleting comment:', error)
-  else
-    comments.value = comments.value.filter(
-      (comment) => comment.id !== commentId,
-    )
+  if (error) {
+    console.error('Error deleting comment:', error)
+  } else {
+    comments.value = comments.value.filter((comment) => comment.id !== commentId)
+  }
 }
 
+// Check if the current user can delete the comment
+const canDeleteComment = (comment: Comment) => {
+  return (
+    (user && user.value?.id === comment.commented_by) ||
+    (user && user.value?.email === 'example@gmail.com')
+  )
+}
+
+// Fetch comments when the component is mounted
 onMounted(fetchComments)
 
+// Watch for changes in comments and refetch them
 watch(comments, fetchComments)
 </script>

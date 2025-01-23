@@ -2,6 +2,7 @@ export default defineNuxtConfig({
   // General Configuration
   compatibilityDate: '2024-11-01',
 
+  // Runtime Configuration
   runtimeConfig: {
     public: {
       supabaseUrl: process.env.SUPABASE_URL,
@@ -9,11 +10,15 @@ export default defineNuxtConfig({
     },
   },
 
+  // Enable Server-Side Rendering
   ssr: true,
 
   // Devtools Configuration
   devtools: { enabled: false },
+
+  // ESLint and Prettier Configuration
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+
   // Modules Configuration
   modules: [
     '@nuxtjs/tailwindcss',
@@ -54,36 +59,12 @@ export default defineNuxtConfig({
       meta: [{ charset: 'utf-8' }],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        {
-          rel: 'apple-touch-icon',
-          sizes: '180x180',
-          href: '/apple-touch-icon.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '32x32',
-          href: '/favicon-32x32.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '16x16',
-          href: '/favicon-16x16.png',
-        },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '192x192',
-          href: '/android-chrome-192x192.png',
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '512x512',
-          href: '/android-chrome-512x512.png',
-        },
+        { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/android-chrome-192x192.png' },
+        { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/android-chrome-512x512.png' },
       ],
     },
   },
@@ -148,7 +129,7 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      routes: ['/post', '/post/category','/public'], // Define static routes for SSG
+      routes: ['/post', '/post/category', '/public'], // Define static routes for SSG
       crawlLinks: true,
       failOnError: false, // Set to true to fail the build if any page fails to prerender
     },
@@ -167,6 +148,12 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     workbox: {
+      enabled: true,
+      preCaching: [
+        '/', // Specify the URLs to precache
+        '/post',
+        '/post/category',
+      ],
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/api\.example\.com\/.*$/,
@@ -187,21 +174,18 @@ export default defineNuxtConfig({
     key: process.env.SUPABASE_KEY,
   },
 
+  // Sitemap Configuration
   sitemap: {
-    siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-    url: [
-      // vercel, netlify
-      process.env.NUXT_ENV_VERCEL_URL,
-      process.env.URL,
-      // cloudflare pages
-      process.env.CF_PAGES_URL,
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.eventsinminutes.com',
+    urls: [
+      { url: '/', changefreq: 'daily', priority: 1.0 },
+      { url: '/about', changefreq: 'monthly', priority: 0.7 },
+      { url: '/contact', changefreq: 'monthly', priority: 0.7 },
     ],
-    // vercel, netlify
-    name: [process.env.NUXT_ENV_VERCEL_GIT_REPO_SLUG, process.env.SITE_NAME],
     gzip: true,
-    cacheTime: 1,
+    cacheTime: 1000 * 60 * 15, // 15 minutes
     routes: () => {
-      return [{ url: new Date().toISOString() }]
+      return [{ url: new Date().toISOString() }];
     },
   },
-})
+});

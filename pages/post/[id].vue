@@ -5,8 +5,9 @@
       <NuxtLink
         :to="`/post/category/${formatedSlug(post.category)}`"
         class="text-sm font-medium text-dark/70"
-        >{{ post.category }}</NuxtLink
       >
+        {{ post.category }}
+      </NuxtLink>
       <h1 class="text-4xl md:text-5xl font-semibold">{{ post.title }}</h1>
       <div class="flex items-center gap-2 font-medium text-dark/70">
         <p>{{ formatedDate(post.created_at) }}</p>
@@ -65,26 +66,37 @@ import { formatedDate } from '~/scripts/formatedDate'
 import { formatedSlug } from '~/scripts/formatedSlug'
 import type { Post } from '~/types/types'
 
+// Get the post ID from the route parameters
 const id = useRoute().params.id
+
+// Initialize Supabase client
 const supabase = useSupabaseClient<Post>()
+
+// Reactive references for post data, likes, and liked status
 const post = ref<Post>()
+const likes = ref(0)
+const liked = ref(false)
+const readTime = ref('')
+
+// Calculate the read time based on the content length
 const calculateReadTime = (text: string) => {
-  const wordsPerMinute = 200 // Average case.
+  const wordsPerMinute = 200 // Average reading speed
   const words = text.split(/\s+/).length
   const minutes = Math.ceil(words / wordsPerMinute)
   return `${minutes} min read`
 }
 
-const readTime = ref('')
-
+// Fetch the post data when the component is mounted
 onMounted(async () => {
   const { data, error } = await supabase
     .from('posts')
     .select('*')
     .eq('id', id)
     .single()
-  if (error) console.error('Error fetching posts:', error)
-  else {
+
+  if (error) {
+    console.error('Error fetching post:', error)
+  } else {
     post.value = data as Post
     if (post.value && post.value.content) {
       readTime.value = calculateReadTime(post.value.content)
@@ -94,21 +106,13 @@ onMounted(async () => {
   }
 })
 
-const liked = ref(false)
-const likes = ref(0)
-
+// Toggle the like status and update the likes count
 const toggleLike = async () => {
   if (!post.value) return
 
-  if (liked.value) {
-    liked.value = false
-    likes.value -= 1
-    localStorage.removeItem(`liked_${post.value.id}`)
-  } else {
-    liked.value = true
-    likes.value += 1
-    localStorage.setItem(`liked_${post.value.id}`, 'true')
-  }
+  liked.value = !liked.value
+  likes.value += liked.value ? 1 : -1
+  localStorage.setItem(`liked_${post.value.id}`, liked.value.toString())
 
   const { error } = await supabase
     .from('posts')
@@ -117,13 +121,10 @@ const toggleLike = async () => {
 
   if (error) {
     console.error('Error updating likes:', error)
+    // Revert the like status and likes count in case of an error
     liked.value = !liked.value
     likes.value += liked.value ? 1 : -1
-    if (liked.value) {
-      localStorage.setItem(`liked_${post.value.id}`, 'true')
-    } else {
-      localStorage.removeItem(`liked_${post.value.id}`)
-    }
+    localStorage.setItem(`liked_${post.value.id}`, liked.value.toString())
   }
 }
 </script>

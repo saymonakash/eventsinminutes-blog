@@ -24,7 +24,7 @@
             <div class="size-8 rounded-full overflow-hidden">
               <NuxtImg
                 :src="
-                  session ? 'images/user.png' : 'images/icons/icon-user.svg'
+                  user ? 'images/user.png' : 'images/icons/icon-user.svg'
                 "
                 class="size-full object-cover"
                 loading="lazy"
@@ -56,5 +56,5 @@ const isDropdownOpen = ref(false)
 function toggleDropdown() {
   isDropdownOpen.value = !isDropdownOpen.value
 }
-const session = useSupabaseSession()
+const user = useSupabaseUser()
 </script>

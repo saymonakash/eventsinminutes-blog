@@ -1,8 +1,6 @@
 <template>
-  <section
-    class="fixed inset-0 flex items-center justify-center py-10 bg-white"
-  >
-    <div class="w-[400px]">
+  <section class="fixed inset-0 flex items-center justify-center py-10 px-4 bg-white">
+    <div class="sm:w-[400px] w-full">
       <div class="text-center mb-6">
         <h4 class="text-2xl font-medium mb-3">Welcome Back!</h4>
         <p class="text-gray-500">Login to your account</p>
@@ -22,10 +20,7 @@
               emailError ? 'border-red-500' : 'border-gray-300',
             ]"
           />
-          <span
-            v-if="emailError"
-            class="text-red-500 text-sm absolute top-full left-0 mt-1"
-          >
+          <span v-if="emailError" class="text-red-500 text-sm absolute top-full left-0 mt-1">
             {{ emailError }}
           </span>
         </div>
@@ -49,18 +44,11 @@
             class="absolute right-3 bottom-4 text-sm text-gray-500"
           >
             <NuxtImg
-              :src="
-                showPassword
-                  ? 'images/icons/icon-eye-off.svg'
-                  : 'images/icons/icon-eye.svg'
-              "
+              :src="showPassword ? 'images/icons/icon-eye-off.svg' : 'images/icons/icon-eye.svg'"
               class="w-5 h-5"
             />
           </button>
-          <span
-            v-if="passwordError"
-            class="text-red-500 text-sm absolute left-0 top-full mt-1"
-          >
+          <span v-if="passwordError" class="text-red-500 text-sm absolute left-0 top-full mt-1">
             {{ passwordError }}
           </span>
         </div>
@@ -72,19 +60,12 @@
               id="remember-me"
               class="form-checkbox h-4 w-4 text-primary transition duration-150 ease-in-out"
             />
-            <label for="remember-me" class="ml-2 block text-sm text-gray-500">
-              Remember Me
-            </label>
+            <label for="remember-me" class="ml-2 block text-sm text-gray-500">Remember Me</label>
           </div>
-          <NuxtLink to="#" class="text-sm text-primary hover:underline">
-            Forgot Password
-          </NuxtLink>
+          <NuxtLink to="#" class="text-sm text-primary hover:underline">Forgot Password</NuxtLink>
         </div>
         <div>
-          <button
-            type="submit"
-            class="w-full bg-primary text-white px-5 text-sm font-semibold rounded-full min-h-12"
-          >
+          <button type="submit" class="w-full bg-primary text-white px-5 text-sm font-semibold rounded-full min-h-12">
             Login
           </button>
         </div>
@@ -97,29 +78,28 @@
 definePageMeta({
   middleware: function (to, from) {
     const user = useSupabaseUser()
-
     if (user.value) {
       return navigateTo('/admin')
     }
   },
 })
 
+// Reactive references for form fields and errors
 const email = ref('')
 const password = ref('')
 const emailError = ref('')
 const passwordError = ref('')
 const showPassword = ref(false)
 const rememberMe = ref(false)
+
+// Supabase client and router
 const router = useRouter()
 const client = useSupabaseClient()
 
-// Validate email format
-const validEmail = (email) => {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return re.test(email)
-}
+// Email validation regex
+const validEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
-// Validate email input
+// Validate email field
 const validateEmail = () => {
   emailError.value = ''
   if (!email.value) {
@@ -129,7 +109,7 @@ const validateEmail = () => {
   }
 }
 
-// Validate password input
+// Validate password field
 const validatePassword = () => {
   passwordError.value = ''
   if (!password.value) {
@@ -155,7 +135,7 @@ onMounted(() => {
   }
 })
 
-// Watch for changes in "Remember Me" checkbox and save/remove credentials
+// Watch for changes in "Remember Me" checkbox and save/remove credentials accordingly
 watch(rememberMe, (newValue) => {
   if (newValue) {
     localStorage.setItem('rememberMeEmail', email.value)
@@ -166,7 +146,7 @@ watch(rememberMe, (newValue) => {
   }
 })
 
-// Watch for changes in email and password and save credentials if "Remember Me" is checked
+// Watch for changes in email and password fields and update localStorage if "Remember Me" is checked
 watch([email, password], () => {
   if (rememberMe.value) {
     localStorage.setItem('rememberMeEmail', email.value)
@@ -174,7 +154,7 @@ watch([email, password], () => {
   }
 })
 
-// Handle login
+// Handle login form submission
 const login = async () => {
   validateEmail()
   validatePassword()
