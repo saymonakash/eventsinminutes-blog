@@ -1,10 +1,12 @@
 export default defineNuxtConfig({
+  // General Configuration
   compatibilityDate: "2024-11-01",
-  devtools: { enabled: false },
   ssr: true,
-  supabase: {
-    redirect: false
-    },
+
+  // Devtools Configuration
+  devtools: { enabled: false },
+
+  // Modules Configuration
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/image",
@@ -12,9 +14,13 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@vite-pwa/nuxt",
   ],
+
+  // TailwindCSS Configuration
   tailwindcss: {
     exposeConfig: true,
   },
+
+  // Image Configuration
   image: {
     dir: "assets/images/",
     provider: "ipx",
@@ -27,16 +33,26 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  // Application Configuration
   app: {
     baseURL: '/',
     head: {
       meta: [{ charset: 'utf-8' }],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/logo/Brand-logo.png' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/android-chrome-192x192.png' },
+        { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/android-chrome-512x512.png' },
       ],
     },
   },
-  site:{
+
+  // Site Configuration
+  site: {
     name: "Events In Minutes",
     title: "Events In Minutes - Your Event Planning Companion",
     description: "Plan your events effortlessly with Events In Minutes.",
@@ -47,6 +63,8 @@ export default defineNuxtConfig({
       site_name: "Events In Minutes",
     },
   },
+
+  // SEO Configuration
   seo: {
     baseURL: "https://www.eventsinminutes.com",
     name: "Events In Minutes",
@@ -67,17 +85,25 @@ export default defineNuxtConfig({
       creator: "@eventsinminutes",
     },
   },
+
+  // Components Configuration
   components: {
     global: true,
     dirs: ["@/components"],
   },
+
+  // CSS Configuration
   css: ["@/assets/css/tailwind.css"],
+
+  // PostCSS Configuration
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
+  // Nitro Configuration
   nitro: {
     routeRules: {
       "/_nuxt/**": {
@@ -88,9 +114,13 @@ export default defineNuxtConfig({
       routes: ["/post"], // Define static routes for SSG
     },
   },
+
+  // Vite Configuration
   vite: {
     cacheDir: ".vite-cache",
   },
+
+  // PWA Configuration
   pwa: {
     registerType: "autoUpdate",
     workbox: {
@@ -105,5 +135,10 @@ export default defineNuxtConfig({
         },
       ],
     },
+  },
+
+  // Supabase Configuration
+  supabase: {
+    redirect: false,
   },
 });

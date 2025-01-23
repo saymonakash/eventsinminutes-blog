@@ -42,7 +42,7 @@ This is the repository for the EventsInMinutes Blog project. Follow the instruct
    yarn dev
    ```
 
-2. Open your browser and navigate to `http://localhost:3000` to see the application running. I set redirect to /post because we don't have any contents on home/index page for now.
+2. Open your browser and navigate to `http://localhost:3000` to see the application running. The application redirects to `/post` because there is no content on the home/index page for now.
 
 ## Building for Production
 
@@ -103,8 +103,20 @@ eventsinminutes-blog/
 └── README.md             # Project documentation
 ```
 
+## Login Information
+- Login URL: [http://localhost:3000/login](http://localhost:3000/login)
+- Email: example@gmail.com
+- Password: password
 
-## Login Info
-Login: http://localhost:3000/login
-email : example@gmail.com
-pass: password
+## Middleware Protection
+- For the Admin page when the user is not logged in (visitors can't access the admin page without logging in).
+- For the Login page when the user is logged in (users can't access the login page after successfully logging in).
+
+## Quick URLs
+- [http://localhost:3000/login](http://localhost:3000/login)
+- [http://localhost:3000/admin](http://localhost:3000/admin)
+- [http://localhost:3000/post](http://localhost:3000/post)
+- [http://localhost:3000/post/44f7686c-3874-4984-b942-3ca8c288c3bf](http://localhost:3000/post/44f7686c-3874-4984-b942-3ca8c288c3bf)
+- [http://localhost:3000/post/category/corporate-events](http://localhost:3000/post/category/corporate-events)
+
+
