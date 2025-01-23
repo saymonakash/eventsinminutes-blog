@@ -87,7 +87,13 @@
 <script setup>
 
 definePageMeta({
-  middleware: "auth",
+  middleware: function(to, from) {
+    const user = useSupabaseUser();
+
+    if (user.value) {
+      return navigateTo('/admin');
+    }
+  },
 });
 
 const email = ref("");

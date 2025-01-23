@@ -40,7 +40,7 @@
     <div v-else>
       <p>No comments yet. Be the first to comment!</p>
     </div>
-    <div class="mt-6">
+    <div class="mt-6" v-if="user">
       <textarea
         v-model="newComment"
         class="w-full p-4 border rounded-lg"
@@ -52,6 +52,9 @@
         Submit Comment
       </button>
     </div>
+    <div v-else>
+      <p>You must be logged in to comment.</p>
+    </div>
   </div>
 </template>
 
@@ -62,8 +65,6 @@ const supabase = useSupabaseClient();
 const postId = useRoute().params.id;
 const comments = ref<Comment[]>([]);
 const newComment = ref();
-
-watchEffect(newComment.value);
 
 const fetchComments = async () => {
   const { data, error } = await supabase

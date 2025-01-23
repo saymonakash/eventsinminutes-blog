@@ -2,6 +2,9 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
   ssr: true,
+  supabase: {
+    redirect: false
+    },
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/image",
@@ -9,9 +12,6 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@vite-pwa/nuxt",
   ],
-  supabase:{
-    redirect: false
-  },
   tailwindcss: {
     exposeConfig: true,
   },
@@ -33,7 +33,6 @@ export default defineNuxtConfig({
       meta: [{ charset: 'utf-8' }],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/logo/Brand-logo.png' },
-        { rel: 'icon', href: '/logo/Brand-logo.png' },
       ],
     },
   },

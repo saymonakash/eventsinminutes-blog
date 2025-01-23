@@ -85,7 +85,6 @@ const signOut = async () => {
     console.error(error.message);
   } else {
     navigateTo("/login");
-    session.value.refresh_token;
   }
 };
 
