@@ -18,7 +18,7 @@
       v-if="showModal"
       class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
     >
-      <div class="bg-white p-8 rounded shadow-lg w-1/2">
+      <div class="bg-white p-8 rounded shadow-lg w-11/12 md:w-1/2">
         <h2 class="text-2xl mb-4">New Post</h2>
         <input
           v-model="newPost.image"
@@ -63,7 +63,7 @@
       v-if="showEditModal"
       class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center"
     >
-      <div class="bg-white p-8 rounded shadow-lg w-1/2">
+      <div class="bg-white p-8 rounded shadow-lg w-11/12 md:w-1/2">
         <h2 class="text-2xl mb-4">Edit Post</h2>
         <input
           v-model="editPost.image"
