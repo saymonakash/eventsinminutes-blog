@@ -148,14 +148,10 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     workbox: {
-      enabled: true,
-      preCaching: [
-        '/post',
-        '/post/category',
-      ],
+      cacheId: 'events-in-minutes',
       runtimeCaching: [
         {
-          urlPattern: /^https:\/\/api\.example\.com\/.*$/,
+          urlPattern: /^https:\/\/api\.eventsinminutes\.com\/.*$/,
           handler: 'CacheFirst',
           options: {
             cacheName: 'api-cache',
@@ -164,6 +160,18 @@ export default defineNuxtConfig({
         },
       ],
       navigateFallback: undefined 
+    },
+    meta: {
+      title: 'Events In Minutes - Your Event Planning Companion',
+      author: 'Events In Minutes Team',
+    },
+    manifest: {
+      name: 'Events In Minutes',
+      short_name: 'EIM',
+      lang: 'en',
+      description: 'Plan your events effortlessly with Events In Minutes.',
+      background_color: '#ffffff',
+      start_url: "/",
     },
   },
 
