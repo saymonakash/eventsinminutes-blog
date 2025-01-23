@@ -112,7 +112,8 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      routes: ["/post", "/post/category"], // Define static routes for SSG
+      routes: ["/post", "/post/category"],  // Define static routes for SSG
+      crawlLinks: true,
     },
   },
 
