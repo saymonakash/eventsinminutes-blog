@@ -143,7 +143,7 @@ export default defineNuxtConfig({
       '/_nuxt/**': {
         headers: { 'Cache-Control': 'public, max-age=31536000, immutable' },
       },
-      '/public': { prerender: true },
+      '/public/**': { prerender: true },
     },
     prerender: {
       routes: ['/post', '/post/category'], // Define static routes for SSG

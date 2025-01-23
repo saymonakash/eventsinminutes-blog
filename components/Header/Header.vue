@@ -23,7 +23,9 @@
             <NuxtImg src="/images/icons/icon-menu.svg" class="size-6" />
             <div class="size-8 rounded-full overflow-hidden">
               <NuxtImg
-                :src="session ? '/images/user.png' : '/images/icons/icon-user.svg'"
+                :src="
+                  session ? '/images/user.png' : '/images/icons/icon-user.svg'
+                "
                 class="size-full object-cover"
                 loading="lazy"
               />
