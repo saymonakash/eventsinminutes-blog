@@ -32,13 +32,11 @@ export default defineNuxtConfig({
 
   // Image Configuration
   image: {
-    dir: 'assets/images',
     prerender: {
       saveOnPrerender: true,
       prerenderProviders: true,
       prerenderExternals: true,
     },
-    provider: 'ipx',
     presets: {
       default: {
         modifiers: {
