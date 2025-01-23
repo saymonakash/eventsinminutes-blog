@@ -77,7 +77,7 @@ export default defineNuxtConfig({
     keywords: ['events', 'planning', 'event management'],
     openGraph: {
       type: 'website',
-      image: '/logo/Brand-logo.png',
+      image: 'images/logo/Brand-logo.png',
       site_name: 'Events In Minutes',
     },
   },
