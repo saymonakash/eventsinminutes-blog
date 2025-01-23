@@ -149,6 +149,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
       failOnError: false, // Set to true to fail the build if any page fails to prerender
     },
+    preset: 'netlify',
   },
 
   // Vite Configuration
