@@ -20,13 +20,13 @@
             to="mailto:contact@eventsinminutes.com"
             class="flex items-center gap-2"
           >
-            <NuxtImg class="size-5" src="/images/icons/icon-mail.svg" />
+            <NuxtImg class="size-5" src="/icons/icon-mail.svg" />
             <span>contact@eventsinminutes.com</span> </NuxtLink
           ><NuxtLink
             to="mailto:contact@eventsinminutes.com"
             class="flex items-center gap-2"
           >
-            <NuxtImg class="size-5" src="/images/icons/icon-call.svg" />
+            <NuxtImg class="size-5" src="/icons/icon-call.svg" />
             <span>+1 (628) 587-3235</span>
           </NuxtLink>
         </div>

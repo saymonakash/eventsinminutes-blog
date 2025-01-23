@@ -32,7 +32,7 @@ export default defineNuxtConfig({
 
   // Image Configuration
   image: {
-    dir: 'public/',
+    dir: 'assets/images',
     prerender: {
       saveOnPrerender: true,
       prerenderProviders: true,

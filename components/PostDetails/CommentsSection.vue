@@ -9,7 +9,7 @@
       >
         <div class="flex items-center gap-4">
           <div class="size-10 rounded-full overflow-hidden">
-            <NuxtImg class="size-full" src="/images/icons/icon-user.svg" />
+            <NuxtImg class="size-full" src="/icons/icon-user.svg" />
           </div>
           <div>
             <p class="font-medium">Anonymous</p>

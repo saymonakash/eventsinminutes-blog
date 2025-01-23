@@ -51,8 +51,8 @@
             <NuxtImg
               :src="
                 showPassword
-                  ? '/images/icons/icon-eye-off.svg'
-                  : '/images/icons/icon-eye.svg'
+                  ? '/icons/icon-eye-off.svg'
+                  : '/icons/icon-eye.svg'
               "
               class="w-5 h-5"
             />
