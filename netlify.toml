@@ -1,0 +1,4 @@
+[template.environment]
+NUXT_PUBLIC_SITE_URL=http://localhost:3000
+SUPABASE_URL=https://hqewnfyxrehjgkrmsbep.supabase.co
+SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxZXduZnl4cmVoamdrcm1zYmVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc0OTkwNTAsImV4cCI6MjA1MzA3NTA1MH0.HzMGGbabEqCFL1BGS1wQ1XKU4cjsjjVyyUWmn_Fbo5A
