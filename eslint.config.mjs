@@ -1,4 +1,4 @@
-import { defineConfig } from 'eslint-define-config';
+import { defineConfig } from 'eslint-define-config'
 
 export default defineConfig({
   env: {
@@ -8,7 +8,7 @@ export default defineConfig({
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
-    '@nuxtjs/eslint-config-typescript'
+    '@nuxtjs/eslint-config-typescript',
   ],
   parserOptions: {
     ecmaVersion: 12,
@@ -36,4 +36,4 @@ export default defineConfig({
     '**/*.mts',
   ],
   ignores: ['**/public/'],
-});
+})
