@@ -30,8 +30,9 @@ const posts = ref<Post[]>([])
 
 // Computed property to filter posts by the current category
 const filteredCategoryPosts = computed(() => {
-  return posts.value.filter(post => 
-    post.category.toLowerCase().replace(/\s/g, '-') === currentCategoryName
+  return posts.value.filter(
+    (post) =>
+      post.category.toLowerCase().replace(/\s/g, '-') === currentCategoryName,
   )
 })
 

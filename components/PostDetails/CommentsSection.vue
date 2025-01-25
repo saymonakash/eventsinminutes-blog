@@ -15,7 +15,9 @@
             <p class="font-medium">Anonymous</p>
             <p class="text-sm text-gray-500">
               <span>{{ formatedDate(comment.created_at) }}</span> at
-              <span>{{ new Date(comment.created_at).toLocaleTimeString() }}</span>
+              <span>{{
+                new Date(comment.created_at).toLocaleTimeString()
+              }}</span>
             </p>
             <p v-if="comment.commented_by" class="text-sm text-gray-500">
               By: {{ comment.commented_by }}
@@ -112,7 +114,9 @@ const deleteComment = async (commentId: string) => {
   if (error) {
     console.error('Error deleting comment:', error)
   } else {
-    comments.value = comments.value.filter((comment) => comment.id !== commentId)
+    comments.value = comments.value.filter(
+      (comment) => comment.id !== commentId,
+    )
   }
 }
 

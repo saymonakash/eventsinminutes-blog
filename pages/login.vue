@@ -1,5 +1,7 @@
 <template>
-  <section class="fixed inset-0 flex items-center justify-center py-10 px-4 bg-white">
+  <section
+    class="fixed inset-0 flex items-center justify-center py-10 px-4 bg-white"
+  >
     <div class="sm:w-[400px] w-full">
       <div class="text-center mb-6">
         <h4 class="text-2xl font-medium mb-3">Welcome Back!</h4>
@@ -20,7 +22,10 @@
               emailError ? 'border-red-500' : 'border-gray-300',
             ]"
           />
-          <span v-if="emailError" class="text-red-500 text-sm absolute top-full left-0 mt-1">
+          <span
+            v-if="emailError"
+            class="text-red-500 text-sm absolute top-full left-0 mt-1"
+          >
             {{ emailError }}
           </span>
         </div>
@@ -44,11 +49,18 @@
             class="absolute right-3 bottom-4 text-sm text-gray-500"
           >
             <NuxtImg
-              :src="showPassword ? 'images/icons/icon-eye-off.svg' : 'images/icons/icon-eye.svg'"
+              :src="
+                showPassword
+                  ? 'images/icons/icon-eye-off.svg'
+                  : 'images/icons/icon-eye.svg'
+              "
               class="w-5 h-5"
             />
           </button>
-          <span v-if="passwordError" class="text-red-500 text-sm absolute left-0 top-full mt-1">
+          <span
+            v-if="passwordError"
+            class="text-red-500 text-sm absolute left-0 top-full mt-1"
+          >
             {{ passwordError }}
           </span>
         </div>
@@ -60,12 +72,19 @@
               id="remember-me"
               class="form-checkbox h-4 w-4 text-primary transition duration-150 ease-in-out"
             />
-            <label for="remember-me" class="ml-2 block text-sm text-gray-500">Remember Me</label>
+            <label for="remember-me" class="ml-2 block text-sm text-gray-500"
+              >Remember Me</label
+            >
           </div>
-          <NuxtLink to="#" class="text-sm text-primary hover:underline">Forgot Password</NuxtLink>
+          <NuxtLink to="#" class="text-sm text-primary hover:underline"
+            >Forgot Password</NuxtLink
+          >
         </div>
         <div>
-          <button type="submit" class="w-full bg-primary text-white px-5 text-sm font-semibold rounded-full min-h-12">
+          <button
+            type="submit"
+            class="w-full bg-primary text-white px-5 text-sm font-semibold rounded-full min-h-12"
+          >
             Login
           </button>
         </div>

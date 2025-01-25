@@ -3,16 +3,18 @@
     <!-- Display title if provided -->
     <h3 v-if="title" class="text-2xl font-bold">Popular Articles</h3>
     <div v-if="title" class="h-8 md:h-10 xl:h-[50px]" />
-    
+
     <!-- Display articles in a responsive grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 gap-y-8 md:gap-y-12">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 gap-y-8 md:gap-y-12"
+    >
       <SectionArticlesCard
         v-for="(post, i) in visiblePosts"
         :key="i"
         :post="post"
       />
     </div>
-    
+
     <!-- Button to load more articles -->
     <button
       v-if="visiblePosts.length < props.posts.length"
@@ -21,7 +23,7 @@
     >
       View More
     </button>
-    
+
     <!-- Button to load fewer articles -->
     <button
       v-if="visiblePosts.length > initialItemsToShow"
@@ -49,11 +51,17 @@ const visiblePosts = computed(() => props.posts.slice(0, itemsToShow.value))
 
 // Function to load more items
 const loadMore = () => {
-  itemsToShow.value = Math.min(itemsToShow.value + initialItemsToShow, props.posts.length)
+  itemsToShow.value = Math.min(
+    itemsToShow.value + initialItemsToShow,
+    props.posts.length,
+  )
 }
 
 // Function to load fewer items
 const loadLess = () => {
-  itemsToShow.value = Math.max(itemsToShow.value - initialItemsToShow, initialItemsToShow)
+  itemsToShow.value = Math.max(
+    itemsToShow.value - initialItemsToShow,
+    initialItemsToShow,
+  )
 }
 </script>

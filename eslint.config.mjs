@@ -24,16 +24,4 @@ export default defineConfig({
   linterOptions: {
     reportUnusedDisableDirectives: 'off',
   },
-  files: [
-    '**/*.vue',
-    '**/*.js',
-    '**/*.jsx',
-    '**/*.cjs',
-    '**/*.mjs',
-    '**/*.ts',
-    '**/*.tsx',
-    '**/*.cts',
-    '**/*.mts',
-  ],
-  ignores: ['**/public/'],
 })

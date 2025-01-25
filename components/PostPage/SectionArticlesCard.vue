@@ -1,7 +1,11 @@
 <template>
   <NuxtLink :to="`/post/${post.id}`">
     <div class="h-[280px] w-full relative rounded-xl overflow-hidden">
-      <NuxtImg :src="post.image" :alt="post.image" class="size-full object-cover" />
+      <NuxtImg
+        :src="post.image"
+        :alt="post.image"
+        class="size-full object-cover"
+      />
       <NuxtLink
         :to="`/post/category/${formatedSlug(post.category)}`"
         class="absolute right-4 top-4 bg-black/25 rounded-lg px-2.5 py-2 uppercase text-white font-bold text-[10px] backdrop-blur-sm tracking-[0.015em]"

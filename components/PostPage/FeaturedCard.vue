@@ -17,7 +17,9 @@
       <h2 class="md:text-[33px] text-2xl leading-[140%] font-medium">
         {{ post.title }}
       </h2>
-      <p class="text-dark/70 leading-[160%] tracking-[0.005em] text-sm md:text-base">
+      <p
+        class="text-dark/70 leading-[160%] tracking-[0.005em] text-sm md:text-base"
+      >
         {{ post.content }}
       </p>
       <hr />
@@ -34,7 +36,11 @@
           class="text-dark text-sm md:text-base font-medium flex items-center gap-1"
         >
           <span>Read</span>
-          <NuxtImg src="images/icons/icon-arrow-right.svg" alt="icon-arrow-right" class="size-4" />
+          <NuxtImg
+            src="images/icons/icon-arrow-right.svg"
+            alt="icon-arrow-right"
+            class="size-4"
+          />
         </NuxtLink>
       </div>
     </div>

@@ -5,6 +5,7 @@
 .nitro
 .cache
 .vite-cache
+.netlify
 dist
 
 # Node dependencies

@@ -2,27 +2,24 @@
   <div class="main-container">
     <!-- Spacer for top margin -->
     <div class="xl:h-24 h-10 md:h-16 w-full" />
-    
+
     <!-- Header component -->
     <PostsHeader />
-    
+
     <!-- Spacer between header and featured card -->
     <div class="xl:h-[84px] h-10 md:h-16 w-full" />
-    
+
     <!-- Featured post card -->
-    <FeaturedCard
-      v-if="posts.length"
-      :post="posts[0]"
-    />
-    
+    <FeaturedCard v-if="posts.length" :post="posts[0]" />
+
     <!-- Spacer between featured card and articles section -->
     <div class="h-[84px] w-full" />
     <hr />
     <div class="h-[84px] w-full" />
-    
+
     <!-- Articles section -->
     <SectionArticles :posts="posts.slice(1)" />
-    
+
     <!-- Spacer for bottom margin -->
     <div class="h-[84px] w-full" />
   </div>

@@ -1,8 +1,15 @@
-module.exports = {
+export default {
   root: true,
   env: {
     browser: true,
     node: true,
+  },
+  globals: {
+    myCustomGlobal: 'readonly',
+  },
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
   },
   extends: [
     '@nuxtjs',
@@ -20,5 +27,14 @@ module.exports = {
         semi: false,
       },
     ],
+  },
+  languageOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+    globals: {
+      ...global.browser,
+      ...global.node,
+      myCustomGlobal: 'readonly',
+    },
   },
 }
