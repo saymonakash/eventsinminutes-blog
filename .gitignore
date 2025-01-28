@@ -6,6 +6,7 @@
 .cache
 .vite-cache
 .netlify
+.env
 dist
 
 # Node dependencies

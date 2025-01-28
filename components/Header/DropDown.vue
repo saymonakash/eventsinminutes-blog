@@ -43,7 +43,6 @@ function closeDropdown() {
 // Supabase user and client instances
 const user = useSupabaseUser()
 const client = useSupabaseClient()
-
 // Function to sign out the user
 const signOut = async () => {
   closeDropdown()

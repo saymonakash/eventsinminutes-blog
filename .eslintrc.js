@@ -16,6 +16,7 @@ export default {
     'plugin:vue/vue3-essential',
     '@nuxtjs/eslint-config-typescript',
     'prettier',
+    'plugin:prettier/recommended', // Add this line
   ],
   plugins: ['vue', 'prettier'],
   // add your custom rules here
@@ -27,14 +28,5 @@ export default {
         semi: false,
       },
     ],
-  },
-  languageOptions: {
-    ecmaVersion: 2022,
-    sourceType: 'module',
-    globals: {
-      ...global.browser,
-      ...global.node,
-      myCustomGlobal: 'readonly',
-    },
   },
 }

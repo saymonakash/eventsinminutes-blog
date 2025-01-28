@@ -6,4 +6,6 @@ module.exports = {
   tabWidth: 2,
   useTabs: false,
   trailingComma: 'all',
+  endOfLine: 'auto',
+  proseWrap: 'always', // Add this line
 }

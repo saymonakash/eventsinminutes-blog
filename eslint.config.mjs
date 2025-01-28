@@ -9,6 +9,7 @@ export default defineConfig({
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@nuxtjs/eslint-config-typescript',
+    'plugin:prettier/recommended', // Add this line
   ],
   parserOptions: {
     ecmaVersion: 12,

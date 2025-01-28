@@ -68,7 +68,6 @@
   </footer>
 </template>
 <script setup lang="ts">
-import Logo from '~/components/Logo.vue'
 const linkItems = [
   {
     title: 'About Us',
