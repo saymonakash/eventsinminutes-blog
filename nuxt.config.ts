@@ -59,12 +59,36 @@ export default defineNuxtConfig({
       meta: [{ charset: 'utf-8' }],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon-32x32.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon-16x16.png',
+        },
         { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/android-chrome-192x192.png' },
-        { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/android-chrome-512x512.png' },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '192x192',
+          href: '/android-chrome-192x192.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '512x512',
+          href: '/android-chrome-512x512.png',
+        },
       ],
     },
   },
@@ -159,11 +183,7 @@ export default defineNuxtConfig({
           },
         },
       ],
-      navigateFallback: undefined 
-    },
-    meta: {
-      title: 'Events In Minutes - Your Event Planning Companion',
-      author: 'Events In Minutes Team',
+      navigateFallback: undefined,
     },
     manifest: {
       name: 'Events In Minutes',
@@ -171,29 +191,22 @@ export default defineNuxtConfig({
       lang: 'en',
       description: 'Plan your events effortlessly with Events In Minutes.',
       background_color: '#ffffff',
-      start_url: "/",
+      start_url: '/',
     },
   },
-
-  // Supabase Configuration
-  supabase: {
-    redirect: false,
-    url: process.env.SUPABASE_URL,
-    key: process.env.SUPABASE_KEY,
-  },
-
   // Sitemap Configuration
   sitemap: {
-    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.eventsinminutes.com',
+    siteUrl:
+      process.env.NUXT_PUBLIC_SITE_URL || 'https://www.eventsinminutes.com',
     urls: [
-      { url: '/', changefreq: 'daily', priority: 1.0 },
-      { url: '/about', changefreq: 'monthly', priority: 0.7 },
-      { url: '/contact', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/', changefreq: 'daily', priority: 1.0 },
+      { loc: '/post', changefreq: 'monthly', priority: 0.7 },
+      { loc: '/post/category', changefreq: 'monthly', priority: 0.7 },
     ],
     gzip: true,
     cacheTime: 1000 * 60 * 15, // 15 minutes
     routes: () => {
-      return [{ url: new Date().toISOString() }];
+      return [{ url: new Date().toISOString() }]
     },
   },
-});
+})
